@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accessibility Checker — WCAG 2.1 AA Audit</title>
+  <meta name="description" content="Paste HTML or a URL and get a scored WCAG 2.1 AA accessibility audit with before/after code fixes.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Serif:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <p class="site-title">Accessibility Checker</p>
+      <nav class="site-nav" aria-label="Site">
+        <a href="index.html" aria-current="page">Checker</a>
+        <a href="about.html">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="container">
+    <!-- ============ Input screen ============ -->
+    <section class="input-section" aria-labelledby="input-heading">
+      <p class="kicker">Paste code · Get a score · See exactly how to fix it</p>
+      <h1 id="input-heading">Audit your code for accessibility.</h1>
+      <p class="lead">
+        A full static WCAG&nbsp;2.1&nbsp;AA analysis — contrast math, labels, ARIA, keyboard access
+        and more. Your code never leaves this page.
+      </p>
+
+      <div class="tabs" role="tablist" aria-label="Input method">
+        <button class="tab" role="tab" id="tab-code" aria-selected="true" aria-controls="panel-code">
+          Paste Code
+        </button>
+        <button class="tab" role="tab" id="tab-url" aria-selected="false" aria-controls="panel-url" tabindex="-1">
+          Check URL
+        </button>
+      </div>
+
+      <div class="panel" id="panel-code" role="tabpanel" aria-labelledby="tab-code">
+        <label class="field-label" for="html-input">HTML code</label>
+        <textarea id="html-input" rows="14" spellcheck="false" autocomplete="off"
+          placeholder="Paste a full page or any HTML snippet…"></textarea>
+
+        <details class="css-details">
+          <summary>Add CSS (optional)</summary>
+          <label class="field-label" for="css-input">CSS code</label>
+          <textarea id="css-input" rows="8" spellcheck="false" autocomplete="off"
+            placeholder="Paste the stylesheet that applies to your HTML…"></textarea>
+        </details>
+
+        <div class="actions">
+          <button class="btn btn-primary" id="run-code">Run Audit</button>
+          <button class="btn btn-ghost" id="load-sample" type="button">Try an example</button>
+        </div>
+      </div>
+
+      <div class="panel" id="panel-url" role="tabpanel" aria-labelledby="tab-url" hidden>
+        <label class="field-label" for="url-input">Page URL</label>
+        <input type="url" id="url-input" placeholder="https://example.com" autocomplete="url">
+        <p class="hint">
+          Works best on static or server-rendered pages. JavaScript-heavy apps may return an
+          empty shell — paste the rendered HTML instead if results look incomplete.
+        </p>
+        <div class="actions">
+          <button class="btn btn-primary" id="run-url">Fetch &amp; Audit</button>
+        </div>
+      </div>
+
+      <p class="status" id="status" role="status" aria-live="polite"></p>
+    </section>
+
+    <!-- ============ Report ============ -->
+    <section class="report" id="report" hidden aria-labelledby="report-heading">
+      <h2 id="report-heading" class="sr-only">Audit report</h2>
+      <div class="report-grid">
+        <aside class="report-aside">
+          <div id="score-card"></div>
+          <div class="filters" role="group" aria-label="Filter findings by severity" id="filters"></div>
+        </aside>
+        <div class="report-main">
+          <div id="findings" class="findings"></div>
+
+          <section class="manual-checks" aria-labelledby="manual-heading">
+            <h3 id="manual-heading">Manual verification required</h3>
+            <p>Static analysis can’t judge everything. Before shipping, verify these by hand:</p>
+            <ol id="manual-list"></ol>
+          </section>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>All analysis runs locally in your browser. A static audit is a strong start — not a substitute for testing with real assistive technology.</p>
+    </div>
+  </footer>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
