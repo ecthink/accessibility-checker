@@ -61,6 +61,10 @@ Start at 100. Critical issues deduct 12, warnings 4, with diminishing deductions
 | 50–69 | Needs Work |
 | 0–49 | Poor |
 
+## License
+
+[MIT](LICENSE)
+
 ## Honest limits
 
 Static analysis can't judge everything. The report ends with a "Manual checks recommended" list (captions, alt-text quality, keyboard traps, screen reader testing, …) — this tool is a strong first pass, not a substitute for human testing.
